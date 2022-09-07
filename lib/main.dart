@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData.dark(),
       darkTheme: ThemeData(
-        primaryColor: Color(0xff343838)
+          primaryColor: Color(0xff343838)
       ),
       home: HomePage(),
       debugShowCheckedModeBanner: false,

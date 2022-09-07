@@ -26,17 +26,16 @@ class _HomePageState extends State<HomePage> {
           width: size.width,
           height: size.height,
           decoration: BoxDecoration(
-            color: Color(0xff005f6b)
+              color: Color(0xff005f6b)
           ),
           child: Column(
             children: [
               SizedBox(height: 10,),
               Text(
-                'Todo App',
+                val.p == true ? 'Archived' : 'Todo List',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xff00dffc),
-                  fontSize: 34,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -45,26 +44,16 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   width: size.width - 22,
                   height: size.height / 1.1,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0xff343838),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(10),
-                    ),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
                   ),
-                  padding: EdgeInsets.all(5),
-                  child: ListView.separated(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                    ),
+                  child: ListView.builder(
+                    padding: EdgeInsets.all(10),
                     itemBuilder: (ct, index) => CardWidget(
                       task: val.list[index],
                     ),
                     itemCount: val.list.length,
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(
-                        height: 4,
-                      );
-                    },
                   ),
                 ),
               ),
@@ -75,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomAppBar(
           elevation: 8,
           color: Color(0xff000000),
-          shape: const CircularNotchedRectangle(),
+          shape: CircularNotchedRectangle(),
           notchMargin: 8,
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -85,9 +74,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   if(val.p) val.toggleDone();
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.list_alt_sharp,
-                  color: Color(0xff00dffc),
+                  color: val.p == true ? Colors.grey : Color(0xff00dffc),
                   size: 28,
                 ),
               ),
@@ -95,9 +84,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   if(!val.p) val.toggleDone();
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.archive_outlined,
-                  color: Color(0xff00dffc),
+                  color: val.p == false ? Colors.grey : Color(0xff00dffc),
                   size: 28,
                 ),
               ),
@@ -105,16 +94,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => showModalBottomSheet(
+          onPressed: () => showDialog(
               context: context,
               builder: (_) => FormWidget()
           ),
           backgroundColor: Color(0xff008c9e),
           foregroundColor: Color(0xff000000),
-          child: const Icon(
-            Icons.add,
-            size: 36,
-          ),
+          child: Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

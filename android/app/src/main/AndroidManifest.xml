@@ -2,7 +2,7 @@
     package="com.example.quiz_app">
 
    <application
-        android:label="To Do"
+        android:label="Todo"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

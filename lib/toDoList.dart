@@ -11,7 +11,7 @@ class ToDoList extends ChangeNotifier {
   List<Task> get list {
     _tasks.sort((a,b) => a.day.compareTo(b.day));
     return p? _tasks.where((e) => e.isDone).toList()
-    : _tasks.where((e) => !e.isDone).toList();
+        : _tasks.where((e) => !e.isDone).toList();
   }
 
   getData() async{

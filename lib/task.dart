@@ -25,7 +25,7 @@ class Task {
         isDone: jsonData['isDone'] == null
             ? false :
         jsonData['isDone'] == 'false'
-        ? false : true
+            ? false : true
     );
   }
 
@@ -36,7 +36,7 @@ class Task {
   };
 
   static String encode(List<Task> listOfTasks) => json.encode(
-    listOfTasks.map<Map<String, dynamic>>((task) => Task.toMap(task)).toList()
+      listOfTasks.map<Map<String, dynamic>>((task) => Task.toMap(task)).toList()
   );
 
   static List<Task> decode(String listOfTasks) => (json.decode(
